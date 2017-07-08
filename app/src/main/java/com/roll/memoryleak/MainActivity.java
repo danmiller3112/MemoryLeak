@@ -1,5 +1,6 @@
 package com.roll.memoryleak;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-//        asyncTask.cancel(true);
+        asyncTask.cancel(true);
         super.onDestroy();
 
     }
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
             try {
+                Bitmap bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888); // big object
                 Thread.sleep(10000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
